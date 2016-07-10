@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import hashlib
-import aiohttp
 from aiohttp import web
 from passlib import hash
 
@@ -15,33 +14,37 @@ def text_or_json(is_json=False, data_dict=None):
     if is_json:
 
         return web.json_response(data_dict)
+
     else:
-        body = "<h1>{}</h1>".format(data_dict['hash'] if data_dict['success'] else data_dict['reason'])
+        body = "{}".format(data_dict['hash'] if data_dict['success'] else data_dict['reason'])
 
         return web.Response(body=body.encode('utf-8'))
-        
+
 
 def hashlib_view_factory(algorithm):
-
 
     async def handler(request):
 
         is_json = False
+
         if 'json' in request.path[-4:]:
-            is_json = True;
+            is_json = True
 
         if request.method == 'POST':
             await request.post()
-
             data = request.POST.get('data')
+
             if data is not None and len(data) > 64:
 
                 return text_or_json(is_json, {'success': False, 'reason': 'data is longer than 64 characters'})
+
         elif request.method == 'GET':
             data = request.GET.get('data')
+
             if data is not None and len(data) > 64:
 
                 return text_or_json(is_json, {'success': False, 'reason': 'data is longer than 64 characters'})
+
         else:
 
             return text_or_json(is_json, {'success': False, 'reason': 'method not allowed'})
@@ -54,7 +57,11 @@ def hashlib_view_factory(algorithm):
         hc = hash_class()
         hc.update(data.encode('utf-8'))
 
-        return text_or_json(is_json, {'success': True, 'hash': hc.hexdigest(), 'algorithm': algorithm })
+        return text_or_json(is_json, {
+            'success': True,
+            'hash': hc.hexdigest(),
+            'algorithm': algorithm
+        })
 
     return handler
 
@@ -64,21 +71,25 @@ def passlib_view_factory(algorithm, **kwds):
     async def handler(request):
 
         is_json = False
+
         if 'json' in request.path[-4:]:
-            is_json = True;
+            is_json = True
 
         if request.method == 'POST':
             await request.post()
-
             data = request.POST.get('data')
+
             if data is not None and len(data) > 64:
 
                 return text_or_json(is_json, {'success': False, 'reason': 'data is longer than 64 characters'})
+
         elif request.method == 'GET':
             data = request.GET.get('data')
+
             if data is not None and len(data) > 64:
 
                 return text_or_json(is_json, {'success': False, 'reason': 'data is longer than 64 characters'})
+
         else:
 
             return text_or_json(is_json, {'success': False, 'reason': 'method not allowed'})
@@ -89,16 +100,19 @@ def passlib_view_factory(algorithm, **kwds):
 
         hash_function = getattr(hash, algorithm)
 
-        return text_or_json(is_json, {'success': True, 'hash': hash_function.encrypt(data.encode('utf-8'), **kwds), 'algorithm': algorithm })
-        
-    return handler
+        return text_or_json(is_json, {
+            'success': True,
+            'hash': hash_function.encrypt(data.encode('utf-8'), **kwds),
+            'algorithm': algorithm
+        })
 
+    return handler
 
 app = web.Application()
 
 
 def add_html_and_json_route(methods, path, views):
-        
+
     if path[-1] != '/':
         json_path = "{}/json".format(path)
     else:
@@ -106,7 +120,6 @@ def add_html_and_json_route(methods, path, views):
 
     app.router.add_route(methods, path, views)
     app.router.add_route(methods, json_path, views)
-
 
 # hashlib
 add_html_and_json_route('*', '/md5', hashlib_view_factory('md5'))
