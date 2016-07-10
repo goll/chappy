@@ -2,6 +2,7 @@ aiohttp==0.21.6
 bcrypt==3.1.0
 cchardet==1.0.0
 cffi==1.7.0
+gunicorn==19.6.0
 passlib==1.6.5
 pycparser==2.14
 six==1.10.0
