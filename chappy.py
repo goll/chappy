@@ -88,7 +88,7 @@ def passlib_view_factory(algorithm, **kwds):
 
         return text_or_json(is_json, {
             'success': True,
-            'hash': hash_function.encrypt(data.encode('utf-8'), **kwds),
+            'hash': hash_function.hash(data.encode('utf-8'), **kwds),
             'algorithm': algorithm
         })
 
@@ -139,7 +139,7 @@ add_html_and_json_route('*', '/ldap-sha512-crypt', passlib_view_factory('ldap_sh
 add_html_and_json_route('*', '/ldap-pbkdf2-sha256', passlib_view_factory('ldap_pbkdf2_sha256'))
 add_html_and_json_route('*', '/ldap-pbkdf2-sha512', passlib_view_factory('ldap_pbkdf2_sha512'))
 
-# GRUB
+# GRUB 2
 add_html_and_json_route('*', '/grub2', passlib_view_factory('grub_pbkdf2_sha512'))
 
 if __name__ == '__main__':
