@@ -136,8 +136,6 @@ add_html_and_json_route('*', '/ldap-salted-sha1', passlib_view_factory('ldap_sal
 add_html_and_json_route('*', '/ldap-bcrypt', passlib_view_factory('ldap_bcrypt'))
 add_html_and_json_route('*', '/ldap-sha256-crypt', passlib_view_factory('ldap_sha256_crypt', rounds=65536))
 add_html_and_json_route('*', '/ldap-sha512-crypt', passlib_view_factory('ldap_sha512_crypt', rounds=65536))
-add_html_and_json_route('*', '/ldap-pbkdf2-sha256', passlib_view_factory('ldap_pbkdf2_sha256'))
-add_html_and_json_route('*', '/ldap-pbkdf2-sha512', passlib_view_factory('ldap_pbkdf2_sha512'))
 
 # GRUB 2
 add_html_and_json_route('*', '/grub2', passlib_view_factory('grub_pbkdf2_sha512'))

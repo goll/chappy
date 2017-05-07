@@ -46,6 +46,7 @@ $ curl -s -d 'data=foobar' http://127.0.0.1:8080/sha512-crypt/json | jq
   * /sha256
   * /sha384
   * /sha512
+
 * crypt:
   * /bcrypt
   * /sha256-crypt
@@ -56,6 +57,7 @@ $ curl -s -d 'data=foobar' http://127.0.0.1:8080/sha512-crypt/json | jq
   * /pbkdf2-sha256
   * /pbkdf2-sha512
   * /scrypt
+
 * LDAP:
   * /ldap-md5
   * /ldap-sha1
@@ -64,7 +66,6 @@ $ curl -s -d 'data=foobar' http://127.0.0.1:8080/sha512-crypt/json | jq
   * /ldap-bcrypt
   * /ldap-sha256-crypt
   * /ldap-sha512-crypt
-  * /ldap-pbkdf2-sha256
-  * /ldap-pbkdf2-sha512
+
 * GRUB 2:
   * /grub2
