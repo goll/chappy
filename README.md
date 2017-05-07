@@ -1,5 +1,5 @@
 # chappy
-chappy is a crypto HTTP API implemented in Python 3 using [aiohttp](https://aiohttp.readthedocs.io/en/stable/) and [passlib](https://passlib.readthedocs.io/en/stable/index.html).
+chappy is a crypto HTTP API implemented in Python 3 using [aiohttp](https://aiohttp.readthedocs.io/en/stable/) and [passlib](https://passlib.readthedocs.io/en/stable/).
 
 ## Installation
 * Clone the repo:
@@ -55,7 +55,6 @@ $ curl -s -d 'data=foobar' http://127.0.0.1:8080/sha512-crypt/json | jq
   "hash": "$6$rounds=65536$KItaUa9JP3sWiDZE$VAIXqGnjIs29KMZ0AIB2wtUhcPzXL3iXYodZj5VgP8Czx.SwgUqqE/xOx4td3xnAZvyJqNWOgrG3hmZ2JOLzf0",
   "algorithm": "sha512_crypt"
 }
-
 ```
 
 ## Supported endpoints
@@ -68,22 +67,19 @@ $ curl -s -d 'data=foobar' http://127.0.0.1:8080/sha512-crypt/json | jq
   * `/sha512`
 
 * passlib:
-  * crypt:
-    * `/bcrypt`
-    * `/sha256-crypt`
-    * `/sha512-crypt`
-    * `/argon2`
-    * `/bcrypt-sha256`
-    * `/pbkdf2-sha256`
-    * `/pbkdf2-sha512`
-    * `/scrypt`
-  * LDAP:
-    * `/ldap-md5`
-    * `/ldap-sha1`
-    * `/ldap-salted-md5`
-    * `/ldap-salted-sha1`
-    * `/ldap-bcrypt`
-    * `/ldap-sha256-crypt`
-    * `/ldap-sha512-crypt`
-  * GRUB 2:
-    * `/grub2`
+  * `/bcrypt`
+  * `/sha256-crypt`
+  * `/sha512-crypt`
+  * `/argon2`
+  * `/bcrypt-sha256`
+  * `/pbkdf2-sha256`
+  * `/pbkdf2-sha512`
+  * `/scrypt`
+  * `/ldap-md5`
+  * `/ldap-sha1`
+  * `/ldap-salted-md5`
+  * `/ldap-salted-sha1`
+  * `/ldap-bcrypt`
+  * `/ldap-sha256-crypt`
+  * `/ldap-sha512-crypt`
+  * `/grub2`
