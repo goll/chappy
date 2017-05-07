@@ -67,4 +67,4 @@ $ curl -s -d 'data=foobar' http://127.0.0.1:8080/sha512-crypt/json | jq
   * /ldap-pbkdf2-sha256
   * /ldap-pbkdf2-sha512
 * GRUB 2:
- * /grub2
+  * /grub2
